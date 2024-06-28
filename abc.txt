@@ -1,2 +1,2 @@
-// path = C:\repo-an2-hyeonju-terraform-ssg\abc.txt
+// path = 
 
