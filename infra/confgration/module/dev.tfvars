@@ -12,4 +12,13 @@ eks_ng_instance_types       = ["t3.medium"]
 eks_ng_min_size             = 1
 eks_ng_max_size             = 1
 eks_ng_desired_size         = 1
-eks_principal_arn           = "arn:aws:iam::386474451889:role/hyeonju-eks-cluster-role"
+eks_principal_arn           = "arn:aws:iam::386474451889:user/hyeonju.kim@bespinglobal.com"
+
+# access_entries = {
+#   role = {
+#     principal_arn = "arn:aws:iam::386474451889:role/hyeonju-eks-cluster-role"
+#   },
+#   user = {
+#     principal_arn = "arn:aws:iam::386474451889:user/hyeonju.kim@bespinglobal.com"
+#   }
+# }
