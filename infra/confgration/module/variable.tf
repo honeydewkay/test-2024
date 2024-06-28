@@ -33,3 +33,38 @@ variable "az_list" {
     description = "List of availability zones for subnets"
     default     = ["ap-northeast-2a", "ap-northeast-2c"]
 }
+
+variable "cluster_name" {
+  type        = string
+  description = "The name of the EKS cluster"
+}
+
+variable "cluster_version" {
+  type        = string
+  description = "The version of the EKS cluster"
+}
+
+variable "eks_ng_instance_types" {
+  type        = list(string)
+  description = "The instance types for the EKS node group"
+}
+
+variable "eks_ng_min_size" {
+  type        = number
+  description = "The minimum size of the EKS node group"
+}
+
+variable "eks_ng_max_size" {
+  type        = number
+  description = "The maximum size of the EKS node group"
+}
+
+variable "eks_ng_desired_size" {
+  type        = number
+  description = "The desired size of the EKS node group"
+}
+
+variable "eks_principal_arn" {
+  type        = string
+  description = "The ARN of the IAM role to assume for EKS"
+}
