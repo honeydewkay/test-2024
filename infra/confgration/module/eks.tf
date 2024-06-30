@@ -10,10 +10,16 @@ module "eks" {
 
 
   cluster_addons = {
-    coredns                = {}
-    eks-pod-identity-agent = {}
-    kube-proxy             = {}
-    vpc-cni                = {}
+    coredns                = {
+      addon_version = var.cluster_addons_coredns 
+    }
+    # eks-pod-identity-agent = {}
+    kube-proxy             = {
+      addon_version = var.cluster_addons_kube_proxy
+    }
+    vpc-cni                = {
+      addon_version = var.cluster_addons_vpc_cni 
+    }
   }
 
   vpc_id                   = aws_vpc.main.id
@@ -50,7 +56,7 @@ module "eks" {
 
       policy_associations = {
         example = {
-          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
           access_scope = {
             namespaces = ["default"]
             type       = "namespace"

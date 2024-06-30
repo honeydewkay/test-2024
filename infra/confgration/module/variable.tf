@@ -69,6 +69,18 @@ variable "eks_principal_arn" {
   description = "The ARN of the IAM role to assume for EKS"
 }
 
+variable "cluster_addons_coredns" {
+  type        = string
+}
+
+variable "cluster_addons_kube_proxy" {
+  type        = string
+}
+
+variable "cluster_addons_vpc_cni" {
+  type        = string
+}
+
 # variable "access_entries" {
 #   type = map(object({
 #     principal_arn = string
