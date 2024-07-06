@@ -9,13 +9,17 @@ resource "aws_subnet" "public" {
   }
 }
 
-resource "aws_subnet" "sec_public" {
-  count                     = length(var.sec_public_subnet_cidr_list)
+resource "aws_subnet" "private" {
+  count                     = length(var.private_subnet_cidr_list)
   vpc_id                    = aws_vpc.main.id
-  cidr_block                = var.sec_public_subnet_cidr_list[count.index]
+  cidr_block                = var.private_subnet_cidr_list[count.index]
   availability_zone         = var.az_list[count.index]
+  depends_on                = [
+    aws_vpc_ipv4_cidr_block_association.secondary_cidr
+  ]
+
   tags = {
-    Name                    = "secondary-public-subnet-${var.name}-${count.index + 1}"
+    Name                    = "private-subnet-${var.name}-${count.index + 1}"
   }
 }
 

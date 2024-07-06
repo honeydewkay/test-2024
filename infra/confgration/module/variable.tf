@@ -64,10 +64,10 @@ variable "eks_ng_desired_size" {
   description = "The desired size of the EKS node group"
 }
 
-variable "eks_principal_arn" {
-  type        = string
-  description = "The ARN of the IAM role to assume for EKS"
-}
+# variable "eks_principal_arn" {
+#   type        = string
+#   description = "The ARN of the IAM role to assume for EKS"
+# }
 
 variable "cluster_addons_coredns" {
   type        = string
