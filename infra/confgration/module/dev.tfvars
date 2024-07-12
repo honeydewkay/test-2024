@@ -15,10 +15,16 @@ cluster_name                = "hyeonju-cluster"
 # cluster_version             = "1.28"
 
 # 1.29
+# cluster_addons_coredns      = "v1.11.1-eksbuild.9"
+# cluster_addons_kube_proxy   = "v1.29.3-eksbuild.5"
+# cluster_addons_vpc_cni      = "v1.18.2-eksbuild.1"
+# cluster_version             = "1.29"
+
+# 1.30
 cluster_addons_coredns      = "v1.11.1-eksbuild.9"
-cluster_addons_kube_proxy   = "v1.29.3-eksbuild.5"
+cluster_addons_kube_proxy   = "v1.30.0-eksbuild.3"
 cluster_addons_vpc_cni      = "v1.18.2-eksbuild.1"
-cluster_version             = "1.29"
+cluster_version             = "1.30"
 
 
 eks_ng_instance_types       = ["t3.medium"]
