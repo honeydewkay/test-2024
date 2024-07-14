@@ -28,9 +28,9 @@ cluster_version             = "1.30"
 
 
 eks_ng_instance_types       = ["t3.medium"]
-eks_ng_min_size             = 1
-eks_ng_max_size             = 1
-eks_ng_desired_size         = 1
+eks_ng_min_size             = 2
+eks_ng_max_size             = 2
+eks_ng_desired_size         = 2
 
 # EC2
 ec2_num                     = 1
