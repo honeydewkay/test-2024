@@ -26,3 +26,7 @@
 #   cidr_ipv4         = "0.0.0.0/0"
 #   ip_protocol       = "-1" # semantically equivalent to all ports
 # }
+
+resource "aws_security_group" "example" {
+  vpc_id      = aws_vpc.main.id
+}
