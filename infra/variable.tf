@@ -1,3 +1,11 @@
+# variable "profile" {
+#     type        = string   
+# }
+
+# variable "region" {
+#     type        = string   
+# }
+
 variable "name" {
     type        = string
     description = "Name for resources"
@@ -88,9 +96,9 @@ variable "cluster_addons_vpc_cni" {
 #   description = "Map of access entries with ARN for the IAM roles or users"
 # }
 
-variable "ec2_num" {
-  type        = number
-}
+#variable "ec2_num" {
+#  type        = number
+#}
 
 variable "ec2_ami" {
   type        = string
@@ -103,3 +111,4 @@ variable "ec2_type" {
 variable "ec2_key" {
   type        = string
 }
+

@@ -7,10 +7,12 @@ terraform {
   }
 }
 
+
 provider "aws" {
   region  = "ap-northeast-2"
+  profile = "hyeonju-test"
 }
 
-resource "random_id" "bucket_id" {
-  byte_length = 8
-}
+# resource "random_id" "bucket_id" {
+#   byte_length = 8
+# }

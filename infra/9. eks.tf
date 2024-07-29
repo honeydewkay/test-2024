@@ -1,35 +1,41 @@
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 20.0"
-
+  create          = true
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
 
   cluster_endpoint_public_access  = true
   cluster_endpoint_private_access  = true
 
+  vpc_id                   = aws_vpc.main.id
+  subnet_ids               = aws_subnet.public[*].id
+  control_plane_subnet_ids = aws_subnet.public[*].id
+  cloudwatch_log_group_retention_in_days = 1
 
+  
+
+# eksctl utils describe-addon-versions --kubernetes-version 1.27 --name vpc-cni | grep Version | head -n 10 # 클러스터 버전별 권장 에드온 버전 확인
   cluster_addons = {
     coredns                = {
       addon_version = var.cluster_addons_coredns 
+	  resolve_conflicts = "PRESERVE"
     }
     # eks-pod-identity-agent = {}
     kube-proxy             = {
       addon_version = var.cluster_addons_kube_proxy
+	  resolve_conflicts = "PRESERVE"
     }
     vpc-cni                = {
       addon_version = var.cluster_addons_vpc_cni 
+	  resolve_conflicts = "PRESERVE"
     }
   }
-
-  vpc_id                   = aws_vpc.main.id
-  subnet_ids               = aws_subnet.public[*].id
-  control_plane_subnet_ids = aws_subnet.public[*].id
-#   cloudwatch_log_group_retention_in_days = 1
 
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
     instance_types = var.eks_ng_instance_types 
+	update_launch_template_default_version = true
   }
 
   eks_managed_node_groups = {
@@ -44,30 +50,10 @@ module "eks" {
     }
   }
 
-  # Cluster access entry
-  # To add the current caller identity as an administrator
   enable_cluster_creator_admin_permissions = true
 
-  # access_entries = {
-  #   # One access entry with a policy associated
-  #   example = {
-  #     kubernetes_groups = []
-  #     principal_arn     = var.eks_principal_arn 
-
-  #     policy_associations = {
-  #       example = {
-  #         policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-  #         access_scope = {
-  #           namespaces = ["default"]
-  #           type       = "namespace"
-  #         }
-  #       }
-  #     }
-  #   }
-  # }
-
   tags = {
-    Environment = "dev"
+    Environment = "test"
     Terraform   = "true"
   }
 }

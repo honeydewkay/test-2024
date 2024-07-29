@@ -1,8 +1,0 @@
-#data "aws_kms_alias" "existing_alias" {
-#  name = "alias/eks/hyeonju-cluster"
-#}
-#
-#resource "aws_kms_key" "example" {
-#  # other configurations
-#  alias_name = data.aws_kms_alias.existing_alias.target_key_id
-#}
