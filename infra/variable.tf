@@ -12,7 +12,7 @@ variable "name" {
     default     = "terraform"   
 }
 
-# VPC
+########## VPC ##########
 variable "vpc_cidr" {
     type        = string
     description = "CIDR block for the VPC"
@@ -25,7 +25,6 @@ variable "secondary_cidr" {
     description = "Secondary CIDR block for the VPC"    
 }
 
-# Subnet
 variable "public_subnet_cidr_list" {
     type        = list(any)
     description = "List of CIDR blocks for public subnets"
@@ -35,6 +34,8 @@ variable "private_subnet_cidr_list" {
     type        = list(any)
     description = "List of CIDR blocks for private subnets"
 }
+
+########## EKS ##########
 
 variable "az_list" {
     type        = list(any)
@@ -52,22 +53,47 @@ variable "cluster_version" {
   description = "The version of the EKS cluster"
 }
 
-variable "eks_ng_instance_types" {
+variable "eks_create" {
+  type        = string
+  description = "whether creating EKS Cluster or NOT"
+}
+
+variable "eks_mgmt_node_instance_types" {
   type        = list(string)
   description = "The instance types for the EKS node group"
 }
 
-variable "eks_ng_min_size" {
+variable "eks_mgmt_node_min_size" {
   type        = number
   description = "The minimum size of the EKS node group"
 }
 
-variable "eks_ng_max_size" {
+variable "eks_mgmt_node_max_size" {
   type        = number
   description = "The maximum size of the EKS node group"
 }
 
-variable "eks_ng_desired_size" {
+variable "eks_mgmt_node_desired_size" {
+  type        = number
+  description = "The desired size of the EKS node group"
+}
+
+variable "eks_svc_node_instance_types" {
+  type        = list(string)
+  description = "The instance types for the EKS node group"
+}
+
+variable "eks_svc_node_min_size" {
+  type        = number
+  description = "The minimum size of the EKS node group"
+}
+
+variable "eks_svc_node_max_size" {
+  type        = number
+  description = "The maximum size of the EKS node group"
+}
+
+variable "eks_svc_node_desired_size" {
   type        = number
   description = "The desired size of the EKS node group"
 }
@@ -99,6 +125,8 @@ variable "cluster_addons_vpc_cni" {
 #variable "ec2_num" {
 #  type        = number
 #}
+
+########## EC2 ##########
 
 variable "ec2_ami" {
   type        = string
