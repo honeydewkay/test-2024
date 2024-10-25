@@ -10,7 +10,7 @@ HOME=/home/ec2-user
 mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
 echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
 echo 'alias k=kubectl' >> ~/.bashrc
+echo "alias test_eks='aws eks --region ap-northeast-2 update-kubeconfig --name hyeonju-cluster'" >> ~/.bashrc
 source ~/.bashrc
 sed -i "s|#Port 22|Port 1022|g" /etc/ssh/sshd_config
 systemctl restart sshd
-

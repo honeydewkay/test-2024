@@ -1,10 +1,10 @@
-resource "aws_nat_gateway" "natgw" {
-    depends_on                  = [aws_internet_gateway.igw]
-    count                       = 1
-    allocation_id               = aws_eip.nat[count.index].id
-    subnet_id                   = aws_subnet.private[count.index].id
+# resource "aws_nat_gateway" "natgw" {
+#     depends_on                  = [aws_internet_gateway.igw]
+#     count                       = 1
+#     allocation_id               = aws_eip.nat[0].id
+#     subnet_id                   = aws_subnet.private[0].id
     
-    tags = {
-        Name                    = "natgw-${var.name}"
-        }
-}
+#     tags = {
+#         Name                    = "natgw-${var.name}"
+#         }
+# }

@@ -1,0 +1,11 @@
+resource "aws_db_instance" "db-added" {
+    engine   = var.rds_engine # 필수
+    username = var.rds_username # 필수
+    password = var.rds_password # 필수
+    instance_class = var.rds_instance_class # 필수
+    storage_encrypted = true # 필수
+    final_snapshot_identifier = false
+    copy_tags_to_snapshot = true
+    skip_final_snapshot = true 
+    max_allocated_storage = 1000
+}

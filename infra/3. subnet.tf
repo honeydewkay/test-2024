@@ -23,3 +23,17 @@ resource "aws_subnet" "private" {
   }
 }
 
+resource "aws_subnet" "secondary" {
+  count                     = length(var.secondary_cidr_list)
+  vpc_id                    = aws_vpc.main.id
+  cidr_block                = var.secondary_cidr_list[count.index]
+  availability_zone         = var.az_list[count.index]
+  depends_on                = [
+    aws_vpc_ipv4_cidr_block_association.secondary_cidr
+  ]
+
+  tags = {
+    Name                    = "secondary-subnet-${var.name}-${count.index + 1}"
+  }
+}
+

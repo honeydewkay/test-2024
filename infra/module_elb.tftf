@@ -1,0 +1,18 @@
+module "elb" {
+  for_each = var.elb
+  source   = "../../modules/elb"
+  name     = "${var.service_name}-${each.value.type}-${var.aws_shot_region}-${var.environment}-${each.value.name}"
+  type     = each.value.type
+  subnets  = data.terraform_remote_state.network.outputs.lb_subnets
+
+  ## alb
+  security_groups = each.value.type == "alb" ? concat([for k, v in module.sg : v.security_group_id if k == each.value.sg_name]) : null
+  idle_timeout    = lookup(each.value, "idle_timeout", null)
+  logs            = lookup(each.value, "logs", null)
+
+  depends_on = [module.sg,]
+
+  tags = {
+    Name = "${var.service_name}-${each.value.type}-${var.aws_shot_region}-${var.environment}-${each.value.name}"
+  }
+}

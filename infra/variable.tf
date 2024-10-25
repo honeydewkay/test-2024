@@ -11,6 +11,17 @@ variable "name" {
     description = "Name for resources"
     default     = "terraform"   
 }
+variable "name-2" {
+    type        = string
+    description = "Name for resources"
+    default     = "terraform"   
+}
+variable "name-3" {
+    type        = string
+    description = "Name for resources"
+    default     = "terraform"   
+}
+
 
 ########## VPC ##########
 variable "vpc_cidr" {
@@ -19,9 +30,15 @@ variable "vpc_cidr" {
     default     = "10.0.0.0/16"       
 }
 
-# VPC additional IPv4 CIDR
 variable "secondary_cidr" {
     type        = string
+    description = "CIDR block for the VPC"      
+}
+
+
+# VPC additional IPv4 CIDR
+variable "private_subnet_cidr_list" {
+    type        = list(any)
     description = "Secondary CIDR block for the VPC"    
 }
 
@@ -30,10 +47,12 @@ variable "public_subnet_cidr_list" {
     description = "List of CIDR blocks for public subnets"
 }
 
-variable "private_subnet_cidr_list" {
+variable "secondary_cidr_list" {
     type        = list(any)
-    description = "List of CIDR blocks for private subnets"
+    description = "List of CIDR blocks for secondary subnets"
 }
+
+
 
 ########## EKS ##########
 
@@ -58,45 +77,54 @@ variable "eks_create" {
   description = "whether creating EKS Cluster or NOT"
 }
 
-variable "eks_mgmt_node_instance_types" {
-  type        = list(string)
-  description = "The instance types for the EKS node group"
+# variable "eks_mgmt_node_instance_types" {
+#   type        = list(string)
+#   description = "The instance types for the EKS node group"
+# }
+
+# variable "eks_mgmt_node_min_size" {
+#   type        = number
+#   description = "The minimum size of the EKS node group"
+# }
+
+# variable "eks_mgmt_node_max_size" {
+#   type        = number
+#   description = "The maximum size of the EKS node group"
+# }
+
+# variable "eks_mgmt_node_desired_size" {
+#   type        = number
+#   description = "The desired size of the EKS node group"
+# }
+
+# variable "eks_svc_node_instance_types" {
+#   type        = list(string)
+#   description = "The instance types for the EKS node group"
+# }
+
+# variable "eks_svc_node_min_size" {
+#   type        = number
+#   description = "The minimum size of the EKS node group"
+# }
+
+# variable "eks_svc_node_max_size" {
+#   type        = number
+#   description = "The maximum size of the EKS node group"
+# }
+
+# variable "eks_svc_node_desired_size" {
+#   type        = number
+#   description = "The desired size of the EKS node group"
+# }
+
+variable "management_node" {
+  type = any
 }
 
-variable "eks_mgmt_node_min_size" {
-  type        = number
-  description = "The minimum size of the EKS node group"
-}
+# variable "service_node" {
+#   type = any
+# }
 
-variable "eks_mgmt_node_max_size" {
-  type        = number
-  description = "The maximum size of the EKS node group"
-}
-
-variable "eks_mgmt_node_desired_size" {
-  type        = number
-  description = "The desired size of the EKS node group"
-}
-
-variable "eks_svc_node_instance_types" {
-  type        = list(string)
-  description = "The instance types for the EKS node group"
-}
-
-variable "eks_svc_node_min_size" {
-  type        = number
-  description = "The minimum size of the EKS node group"
-}
-
-variable "eks_svc_node_max_size" {
-  type        = number
-  description = "The maximum size of the EKS node group"
-}
-
-variable "eks_svc_node_desired_size" {
-  type        = number
-  description = "The desired size of the EKS node group"
-}
 
 # variable "eks_principal_arn" {
 #   type        = string
@@ -139,4 +167,21 @@ variable "ec2_type" {
 variable "ec2_key" {
   type        = string
 }
+
+########## RDS ##########
+# variable "rds_engine" {
+#   type        = string
+# }
+
+# variable "rds_username" {
+#   type        = string
+# }
+
+# variable "rds_password" {
+#   type        = string
+# }
+
+# variable "rds_instance_class" {
+#   type        = string
+# }
 
